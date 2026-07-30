@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Pokeball</title>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <header>
+      <div
+        id="pokeball1"
+        class="relative mx-auto border-2 border-black rounded-b-3xl bg-[#f44f41] pt-8 px-8 pb-20"
+      >
+        <form
+          action="submit"
+          class="flex flex-wrap justify-center items-center gap-4 mt-8"
+        >
+          <input
+            type="search"
+            id="site-search"
+            name="q"
+            class="w-full min-[450px]:w-[600px] h-16 px-6 rounded-2xl border-2 border-[#2A2A2A] bg-[#ed665a] text-3xl outline-none"
+          />
+          <!-- <div
+            class="hidden min-[895px]:block h-20 border-l-2 border-[#2A2A2A] mx-3"
+          ></div> -->
+          <button
+            id="submit"
+            class="w-full min-[450px]:w-[170px] h-16 rounded-2xl border-2 border-[#2A2A2A] text-3xl hover:bg-[#2A2A2A] hover:text-white transition bg-[#ed665a]"
+          >
+            Submit
+          </button>
+        </form>
+        <div
+          class="absolute left-1/2 -bottom-12 -translate-x-1/2 w-24 h-24 rounded-full border-2 border-[#2A2A2A] bg-[#f0f0f0] flex items-center justify-center"
+        >
+          <div
+            id="saveBtn"
+            class="w-10 h-10 rounded-full border-2 border-[#2A2A2A] bg-white hover:bg-[#686868]"
+          ></div>
+        </div>
+      </div>
+    </header>
+    <main id="main" class="flex-1"></main>
+    <footer class="mt-auto">
+      <div
+        id="pokeball2"
+        class="flex flex-col min-[600px]:flex-row justify-between items-center gap-4 border-2 px-4 py-4 h-auto rounded-t-3xl"
+      >
+        <p class="min-[600px]:ml-6">© Poke Impressum</p>
+        <nav class="min-[600px]:mr-6">
+          <a href="index.html" class="hover:text-[#f44f41] transition">Home</a>
+          |
+          <a href="pokedex.html" class="hover:text-[#f44f41] transition"
+            >Pokedex</a
+          >
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
