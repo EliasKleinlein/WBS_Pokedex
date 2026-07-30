@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="fetch.js" defer></script>
     <title>Pokeball</title>
   </head>
   <body class="min-h-screen flex flex-col">
@@ -42,7 +43,13 @@
         </div>
       </div>
     </header>
-    <main id="main" class="flex-1"></main>
+    <main id="main" class="flex-1">
+      <img id="poke-img" class="hidden h-64 w-64 mx-auto pt-6" alt="" />
+      <div
+        id="main-pokemon"
+        class="h-8 w-full mx-auto whitespace-pre-line text-center text-3xl font-bold"
+      ></div>
+    </main>
     <footer class="mt-auto">
       <div
         id="pokeball2"
