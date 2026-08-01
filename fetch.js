@@ -1,0 +1,58 @@
+const input = document.querySelector("form");
+const pokeImg = document.querySelector("#poke-img");
+const btn = document.querySelector("#saveBtn");
+const mainPokemon = document.querySelector("#main-pokemon");
+const url = "https://pokeapi.co/api/v2/pokemon";
+
+input.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  const pokeName = formData.get("q")?.toLocaleLowerCase();
+  btn.disabled = true;
+  btn.classList.add(
+    "transition-all",
+    "duration-700",
+    "ease-in-out",
+    "bg-red-400",
+    "animate-pulse",
+    "shadow-lg",
+    "shadow-red-300",
+  );
+  btn.classList.remove("bg-white");
+
+  setTimeout(() => {
+    fetch(`${url}/${pokeName}`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`${pokeName} wasn't found`);
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        pokeImg.src = data.sprites.front_default;
+        pokeImg.classList.remove("hidden");
+        mainPokemon.textContent = `Name: ${data.species.name}
+        ID: ${data.id}`;
+        btn.classList.remove(
+          "bg-red-400",
+          "animate-pulse",
+          "shadow-lg",
+          "shadow-red-300",
+        );
+        btn.classList.add("bg-white");
+        btn.disabled = false;
+      })
+      .catch((error) => {
+        console.error("Oh oh. ", error);
+        mainPokemon.textContent = "No Pokemon found";
+        btn.classList.remove(
+          "bg-red-400",
+          "animate-pulse",
+          "shadow-lg",
+          "shadow-red-300",
+        );
+        btn.classList.add("bg-white");
+        btn.disabled = false;
+      });
+    input.reset();
+  }, 2000);
+});
