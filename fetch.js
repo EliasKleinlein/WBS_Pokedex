@@ -24,6 +24,7 @@ const pokeObject = {
 
 input.addEventListener("submit", (event) => {
   event.preventDefault();
+  mainPokemon.textContent = "";
   const formData = new FormData(event.target);
   const pokeName = formData.get("q")?.toLocaleLowerCase();
   btn.disabled = true;
