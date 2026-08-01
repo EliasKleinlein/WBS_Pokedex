@@ -25,6 +25,7 @@ const pokeObject = {
 input.addEventListener("submit", (event) => {
   event.preventDefault();
   mainPokemon.textContent = "";
+  deleteCard();
   const formData = new FormData(event.target);
   const pokeName = formData.get("q")?.toLocaleLowerCase();
   btn.disabled = true;
@@ -62,8 +63,6 @@ input.addEventListener("submit", (event) => {
         pokeObject.pokeStats.Defense = data.stats[2].base_stat;
         pokeObject.pokeStats.Speed = data.stats[5].base_stat;
         console.log(pokeObject);
-
-        deleteCard();
 
         createCard(pokeObject);
 
