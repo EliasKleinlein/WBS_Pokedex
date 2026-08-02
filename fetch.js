@@ -25,46 +25,6 @@ const pokeObject = {
   pokeNote: "Write a personal Note ✏️",
 };
 
-// btn logic
-// Anzeige von Pokemon und blinkender Button mit Delay bis Anzeige
-function anzeigeUndTimeout() {
-  btn.disabled = true;
-  btn.classList.remove("bg-white");
-  btn.classList.add(
-    "transition-all",
-    "duration-700",
-    "ease-in-out",
-    "bg-red-400",
-    "animate-pulse",
-    "shadow-lg",
-    "shadow-red-300",
-  );
-
-  setTimeout(() => {
-    btn.classList.remove(
-      "bg-red-400",
-      "animate-pulse",
-      "shadow-lg",
-      "shadow-red-300",
-    );
-    btn.classList.add("bg-white");
-    btn.disabled = false;
-
-    pokeImg.src = pokeObject.pokeImg;
-    pokeImg.classList.remove("hidden");
-    mainPokemon.textContent = `Name: ${pokeObject.pokeName}
-    ID: ${pokeObject.id}
-    Type: ${pokeObject.pokeType.join("/")}
-    Dex Entry: ${pokeObject.flavorText}`;
-    const pokeCry = new Audio(pokeObject.cry);
-    pokeCry.play();
-
-    btn.classList.add("bg-white");
-    btn.disabled = false;
-    input.reset();
-  }, 2000);
-}
-
 input.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(event.target);
@@ -117,9 +77,6 @@ input.addEventListener("submit", (event) => {
             ? flavorTextObj.flavor_text.replace(/[\n\f]/g, " ")
             : "No entry.";
           console.log(pokeObject.flavorText);
-        })
-        .then(() => {
-          anzeigeUndTimeout();
         });
     })
     .catch((error) => {
