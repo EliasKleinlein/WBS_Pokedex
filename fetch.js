@@ -1,9 +1,10 @@
-import { createCard } from "./pokeCard";
+import createCard from "./pokeCard.js";
 
 const input = document.querySelector("form");
 const pokeImg = document.querySelector("#poke-img");
 const btn = document.querySelector("#saveBtn");
 const mainPokemon = document.querySelector("#main-pokemon");
+const main = document.querySelector("#main");
 const url = "https://pokeapi.co/api/v2/pokemon";
 
 //pokeObject
@@ -23,6 +24,8 @@ const pokeObject = {
 
 input.addEventListener("submit", (event) => {
   event.preventDefault();
+  mainPokemon.textContent = "";
+  deleteCard();
   const formData = new FormData(event.target);
   const pokeName = formData.get("q")?.toLocaleLowerCase();
   btn.disabled = true;
@@ -45,10 +48,10 @@ input.addEventListener("submit", (event) => {
       })
       .then((data) => {
         console.log(data);
-        pokeImg.src = data.sprites.front_default;
-        pokeImg.classList.remove("hidden");
-        mainPokemon.textContent = `Name: ${data.stats[0].base_stat}
-        ID: ${data.id}`;
+        // pokeImg.src = data.sprites.front_default;
+        // pokeImg.classList.remove("hidden");
+        // mainPokemon.textContent = `Name: ${data.types[0].type.name}
+        // ID: ${data.id}`;
 
         // object logic
         pokeObject.id = data.id;
@@ -60,6 +63,8 @@ input.addEventListener("submit", (event) => {
         pokeObject.pokeStats.Defense = data.stats[2].base_stat;
         pokeObject.pokeStats.Speed = data.stats[5].base_stat;
         console.log(pokeObject);
+
+        createCard(pokeObject);
 
         //btn logic
         btn.classList.remove(
@@ -86,3 +91,10 @@ input.addEventListener("submit", (event) => {
     input.reset();
   }, 2000);
 });
+
+function deleteCard() {
+  let pokeCard = document.getElementById("pokecard");
+  if (pokeCard) {
+    main.removeChild(pokeCard);
+  }
+}
