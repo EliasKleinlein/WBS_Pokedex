@@ -1,7 +1,6 @@
 import createCard from "./pokeCard.js";
 
 const input = document.querySelector("form");
-const pokeImg = document.querySelector("#poke-img");
 const btn = document.querySelector("#saveBtn");
 const mainPokemon = document.querySelector("#main-pokemon");
 const main = document.querySelector("#main");
@@ -25,6 +24,37 @@ const pokeObject = {
   pokeNote: "Write a personal Note ✏️",
 };
 
+// btn logic
+// Anzeige von Pokemon und blinkender Button mit Delay bis Anzeige
+function anzeigeUndTimeout() {
+  btn.disabled = true;
+  btn.classList.add(
+    "bg-red-400",
+    "transition-all",
+    "duration-700",
+    "shadow-lg",
+    "shadow-red-300",
+    "animate-pulse",
+  );
+  btn.classList.remove("bg-white");
+  setTimeout(() => {
+    btn.classList.remove(
+      "bg-red-400",
+      "animate-pulse",
+      "shadow-lg",
+      "shadow-red-300",
+    );
+    btn.classList.add("bg-white");
+    btn.disabled = false;
+    createCard(pokeObject);
+    const pokeCry = new Audio(pokeObject.cry);
+    pokeCry.play();
+    btn.classList.add("bg-white");
+    btn.disabled = false;
+    input.reset();
+  }, 2000);
+}
+
 input.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(event.target);
@@ -45,13 +75,9 @@ input.addEventListener("submit", (event) => {
       pokeObject.id = data.id;
       pokeObject.pokeName =
         data.species.name.charAt(0).toUpperCase() + data.species.name.slice(1);
-      const typeList = Object.keys(data.types);
-      for (const el of typeList) {
-        typeList[el] = data.types[el].type.name;
-        typeList[el] =
-          typeList[el].charAt(0).toUpperCase() + typeList[el].slice(1);
-      }
-      pokeObject.pokeType = typeList;
+      pokeObject.pokeType = data.types.map(
+        (el) => el.type.name.charAt(0).toUpperCase() + el.type.name.slice(1),
+      );
       pokeObject.pokeImg = data.sprites.front_default;
       pokeObject.pokeStats.HP = data.stats[0].base_stat;
       pokeObject.pokeStats.Attack = data.stats[1].base_stat;
@@ -59,11 +85,10 @@ input.addEventListener("submit", (event) => {
       pokeObject.pokeStats.Speed = data.stats[5].base_stat;
       pokeObject.cry = data.cries.legacy;
       console.log(pokeObject);
-      createCard(pokeObject);
     })
     .then(() => {
       // 2/2 Fetch - Flavor Text
-      fetch(`${urlFlavor}/${pokeObject.id}`)
+      return fetch(`${urlFlavor}/${pokeObject.id}`)
         .then((res) => {
           if (!res.ok) throw new Error(`${pokeName} wasn't found`);
           return res.json();
@@ -77,6 +102,9 @@ input.addEventListener("submit", (event) => {
             ? flavorTextObj.flavor_text.replace(/[\n\f]/g, " ")
             : "No entry.";
           console.log(pokeObject.flavorText);
+        })
+        .then(() => {
+          anzeigeUndTimeout();
         });
     })
     .catch((error) => {
