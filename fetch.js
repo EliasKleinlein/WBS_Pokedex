@@ -1,7 +1,10 @@
+import createCard from "./pokeCard.js";
+
 const input = document.querySelector("form");
 const pokeImg = document.querySelector("#poke-img");
 const btn = document.querySelector("#saveBtn");
 const mainPokemon = document.querySelector("#main-pokemon");
+const main = document.querySelector("#main");
 const url = "https://pokeapi.co/api/v2/pokemon";
 const urlFlavor = "https://pokeapi.co/api/v2/pokemon-species/";
 
@@ -66,6 +69,8 @@ input.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(event.target);
   const pokeName = formData.get("q")?.toLocaleLowerCase();
+  mainPokemon.textContent = "";
+  deleteCard();
 
   // 1/2 Fetch - alles außer Flavor Text
   fetch(`${url}/${pokeName}`)
@@ -94,6 +99,7 @@ input.addEventListener("submit", (event) => {
       pokeObject.pokeStats.Speed = data.stats[5].base_stat;
       pokeObject.cry = data.cries.legacy;
       console.log(pokeObject);
+      createCard(pokeObject);
     })
     .then(() => {
       // 2/2 Fetch - Flavor Text
@@ -121,3 +127,10 @@ input.addEventListener("submit", (event) => {
       mainPokemon.textContent = "No Pokemon found";
     });
 });
+
+function deleteCard() {
+  let pokeCard = document.getElementById("pokecard");
+  if (pokeCard) {
+    main.removeChild(pokeCard);
+  }
+}

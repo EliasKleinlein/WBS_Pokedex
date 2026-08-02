@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="fetch.js" defer></script>
+    <script src="fetch.js" type="module"></script>
     <title>Pokeball</title>
   </head>
   <body class="min-h-screen flex flex-col">
@@ -18,8 +18,9 @@
           class="flex flex-wrap justify-center items-center gap-4 mt-8"
         >
           <input
-            type="search"
+            style="cursor: pointer"
             id="site-search"
+            type="search"
             name="q"
             class="w-full min-[450px]:w-[600px] h-16 px-6 rounded-2xl border-2 border-[#2A2A2A] bg-[#ed665a] text-3xl outline-none"
           />
@@ -27,6 +28,7 @@
             class="hidden min-[895px]:block h-20 border-l-2 border-[#2A2A2A] mx-3"
           ></div> -->
           <button
+            style="cursor: pointer"
             id="submit"
             class="w-full min-[450px]:w-[170px] h-16 rounded-2xl border-2 border-[#2A2A2A] text-3xl hover:bg-[#2A2A2A] hover:text-white transition bg-[#ed665a]"
           >
@@ -37,6 +39,7 @@
           class="absolute left-1/2 -bottom-12 -translate-x-1/2 w-24 h-24 rounded-full border-2 border-[#2A2A2A] bg-[#f0f0f0] flex items-center justify-center"
         >
           <div
+            style="cursor: pointer"
             id="saveBtn"
             class="w-10 h-10 rounded-full border-2 border-[#2A2A2A] bg-white hover:bg-[#686868]"
           ></div>
@@ -47,7 +50,7 @@
       <img id="poke-img" class="hidden h-64 w-64 mx-auto pt-6" alt="" />
       <div
         id="main-pokemon"
-        class="h-8 w-[400px] max-w-[90vw] mx-auto whitespace-pre-line text-center text-3xl font-bold"
+        class="flex justify-center pt-24 h-8 w-full mx-auto whitespace-pre-line text-center text-3xl font-bold"
       ></div>
     </main>
     <footer class="mt-auto">
