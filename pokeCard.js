@@ -1,28 +1,27 @@
 const main = document.querySelector("#main");
 
 const typeColor = {
-  normal: "#A8A878",
-  fire: "#F08030",
-  water: "#6890F0",
-  electric: "#F8D030",
-  grass: "#78C850",
-  ice: "#98D8D8",
-  fighting: "#C03028",
-  poison: "#A040A0",
-  ground: "#E0C068",
-  flying: "#A890F0",
-  psychic: "#F85888",
-  bug: "#A8B820",
-  rock: "#B8A038",
-  ghost: "#705898",
-  dragon: "#7038F8",
-  dark: "#705848",
-  steel: "#B8B8D0",
-  fairy: "#EE99AC",
+  Normal: "#A8A878",
+  Fire: "#F08030",
+  Water: "#6890F0",
+  Electric: "#F8D030",
+  Grass: "#78C850",
+  Ice: "#98D8D8",
+  Fighting: "#C03028",
+  Poison: "#A040A0",
+  Ground: "#E0C068",
+  Flying: "#A890F0",
+  Psychic: "#F85888",
+  Bug: "#A8B820",
+  Rock: "#B8A038",
+  Ghost: "#705898",
+  Dragon: "#7038F8",
+  Dark: "#705848",
+  Steel: "#B8B8D0",
+  Fairy: "#EE99AC",
 };
-
 function createCard(pokeObject) {
-  const color = typeColor[pokeObject.pokeType];
+  const color = typeColor[pokeObject.pokeType[0]];
   //creation
   const Card = document.createElement("div");
   Card.id = "pokecard";
@@ -46,7 +45,7 @@ function createCard(pokeObject) {
   pokeId.className = `text-sm font-semibold text-white/80`;
 
   const pokeType = document.createElement("p");
-  pokeType.textContent = pokeObject.pokeType;
+  pokeType.textContent = pokeObject.pokeType.join("/");
   pokeType.className = `self-start mt-2 px-3 py-1 bg-white/25 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-wider text-white`;
 
   const listStats = document.createElement("ul");
