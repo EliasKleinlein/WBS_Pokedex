@@ -12,26 +12,42 @@
     <title>Pokédex</title>
   </head>
 
-  <body class="flex min-h-screen flex-col bg-slate-950 text-slate-900">
+  <body class="flex min-h-screen
+    flex-col bg-slate-950
+    text-slate-900">
     <header class="relative z-20">
       <div
         id="pokeball1"
-        class="relative mx-auto rounded-b-3xl border-2 border-black bg-[#f44f41] px-6 pb-16 pt-8 shadow-lg"
+        class="relative mx-auto
+          rounded-b-3xl border-2
+          border-black bg-[#f44f41] px-6
+          pb-16 pt-8 shadow-lg"
       >
         <div
-          class="mx-auto flex max-w-6xl flex-col items-center gap-5 text-center"
+          class="mx-auto flex max-w-6xl
+            flex-col items-center gap-5
+            text-center"
         >
-          <h1 class="text-4xl font-black tracking-tight text-white sm:text-5xl">
+          <h1 class="text-4xl font-black
+            tracking-tight text-white
+            sm:text-5xl">
             My Pokédex
           </h1>
 
           <nav
             aria-label="Main navigation"
-            class="flex items-center gap-2 rounded-full border-2 border-[#2A2A2A] bg-[#ed665a] px-5 py-2 text-lg font-bold"
+            class="flex items-center
+              gap-2 rounded-full
+              border-2 border-[#2A2A2A]
+              bg-[#ed665a] px-5 py-2
+              text-lg font-bold"
           >
             <a
               href="index.html"
-              class="rounded-full px-3 py-1 transition hover:bg-[#2A2A2A] hover:text-white"
+              class="rounded-full px-3
+                py-1 transition
+                hover:bg-[#2A2A2A]
+                hover:text-white"
             >
               Homepage
             </a>
@@ -41,7 +57,9 @@
             <a
               href="pokedex.html"
               aria-current="page"
-              class="rounded-full bg-[#2A2A2A] px-3 py-1 text-white"
+              class="rounded-full
+                bg-[#2A2A2A] px-3 py-1
+                text-white"
             >
               Pokédex
             </a>
@@ -49,11 +67,19 @@
         </div>
 
         <div
-          class="absolute -bottom-12 left-1/2 flex h-24 w-24 -translate-x-1/2 items-center justify-center rounded-full border-2 border-[#2A2A2A] bg-[#f0f0f0]"
+          class="absolute -bottom-12
+            left-1/2 flex h-24 w-24
+            -translate-x-1/2
+            items-center justify-center
+            rounded-full border-2
+            border-[#2A2A2A]
+            bg-[#f0f0f0]"
           aria-hidden="true"
         >
           <div
-            class="h-10 w-10 rounded-full border-2 border-[#2A2A2A] bg-white"
+            class="h-10 w-10
+              rounded-full border-2
+              border-[#2A2A2A] bg-white"
           ></div>
         </div>
       </div>
@@ -62,39 +88,160 @@
     <main class="flex-1 bg-slate-950">
       <section
         id="pokebox"
-        class="mt-[4rem] mx-auto aspect-[4/3] w-[400px] bg-contain bg-top bg-no-repeat px-2 pt-20 pb-24 min-[640px]:w-[600px] min-[640px]:px-12 min-[820px]:w-[800px] min-[1000px]:w-[1000px] min-[1200px]:w-[1200px]"
+        class="mx-auto aspect-[4/3]
+          bg-contain bg-top bg-no-repeat
+          mt-[4rem] w-[400px] px-2 pt-20
+          pb-24 min-[640px]:mt-[4rem]
+          min-[640px]:w-[600px]
+          min-[640px]:px-12
+          min-[640px]:pt-20
+          min-[640px]:pb-24
+          min-[820px]:mt-[4rem]
+          min-[820px]:w-[800px]
+          min-[820px]:px-12
+          min-[820px]:pt-20
+          min-[820px]:pb-24
+          min-[1000px]:mt-[4rem]
+          min-[1000px]:w-[1000px]
+          min-[1000px]:px-12
+          min-[1000px]:pt-20
+          min-[1000px]:pb-24
+          min-[1200px]:mt-[4rem]
+          min-[1200px]:w-[1200px]
+          min-[1200px]:px-12
+          min-[1200px]:pt-20
+          min-[1200px]:pb-24"
         style="background-image: url(&quot;./pics/Pokebox_leer.png&quot;)"
       >
         <form
           id="pokedex-search-form"
-          class="-mt-4 mx-auto mb-20 flex w-[360px] items-center gap-3 rounded-xl border-2 border-transparent px-3 py-2 min-[640px]:w-[540px] min-[820px]:w-[720px] min-[1000px]:w-[900px] min-[1200px]:w-[1080px]"
+          class="mx-auto
+            translate-x-[-2px]
+            min-[640px]:translate-x-[-31px]
+            min-[820px]:translate-x-[-20px]
+            min-[1000px]:translate-x-[-10px]
+            min-[1200px]:translate-x-[0px]
+            flex items-center rounded-xl
+            border-2 border-transparent
+            -mt-[66px] mb-20 w-[388px]
+            gap-3 px-3 py-2
+            min-[640px]:-mt-[54px]
+            min-[640px]:mb-20
+            min-[640px]:w-[566px]
+            min-[640px]:gap-3
+            min-[640px]:px-3
+            min-[640px]:py-2
+            min-[820px]:-mt-[44px]
+            min-[820px]:mb-20
+            min-[820px]:w-[744px]
+            min-[820px]:gap-3
+            min-[820px]:px-3
+            min-[820px]:py-2
+            min-[1000px]:-mt-[30px]
+            min-[1000px]:mb-20
+            min-[1000px]:w-[924px]
+            min-[1000px]:gap-3
+            min-[1000px]:px-3
+            min-[1000px]:py-2
+            min-[1200px]:-mt-4
+            min-[1200px]:mb-20
+            min-[1200px]:w-[1100px]
+            min-[1200px]:gap-3
+            min-[1200px]:px-3
+            min-[1200px]:py-2"
         >
           <input
             id="pokedex-search"
             type="search"
             name="pokemon-search"
             placeholder="Search Pokémon by name or ID"
-            class="h-23 min-w-0 flex-1 rounded-xl border border-[#8f8776] bg-transparent px-3 text-lg outline-none placeholder:text-slate-600 focus:border-[#8f8776] min-[640px]:px-4 min-[640px]:text-xl min-[820px]:text-2xl min-[1000px]:text-3xl"
+            class="min-w-0 flex-1
+              rounded-xl border
+              border-[#8f8776]
+              bg-transparent
+              outline-none
+              placeholder:text-slate-600
+              focus:border-[#8f8776] h-8
+              px-3 text-lg
+              min-[640px]:h-12
+              min-[640px]:px-4
+              min-[640px]:text-xl
+              min-[820px]:h-16
+              min-[820px]:px-4
+              min-[820px]:text-2xl
+              min-[1000px]:h-19
+              min-[1000px]:px-4
+              min-[1000px]:text-3xl
+              min-[1200px]:h-22
+              min-[1200px]:px-4
+              min-[1200px]:text-3xl"
           />
 
           <button
             type="submit"
-            class="h-23 w-20 shrink-0 rounded-xl border border-[#8f8776] bg-transparent text-lg font-bold transition hover:border-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white min-[640px]:w-24 min-[640px]:text-xl min-[820px]:w-auto min-[820px]:px-6 min-[820px]:text-2xl min-[1000px]:text-3xl"
+            class="shrink-0 rounded-xl
+              border border-[#8f8776]
+              bg-transparent font-bold
+              transition
+              hover:border-[#2A2A2A]
+              hover:bg-[#2A2A2A]
+              hover:text-white h-8 w-20
+              px-0 text-lg
+              min-[640px]:h-12
+              min-[640px]:w-24
+              min-[640px]:px-0
+              min-[640px]:text-xl
+              min-[820px]:h-16
+              min-[820px]:w-auto
+              min-[820px]:px-6
+              min-[820px]:text-2xl
+              min-[1000px]:h-19
+              min-[1000px]:w-auto
+              min-[1000px]:px-6
+              min-[1000px]:text-3xl
+              min-[1200px]:h-22
+              min-[1200px]:w-auto
+              min-[1200px]:px-6
+              min-[1200px]:text-3xl"
           >
-            <span aria-hidden="true" class="text-3xl min-[820px]:hidden"
+            <span aria-hidden="true" class="text-3xl
+              min-[820px]:hidden"
               >⌕</span
             >
-            <span class="hidden min-[820px]:inline">Search</span>
+            <span class="hidden
+              min-[820px]:inline">Search</span>
             <span class="sr-only">Search Pokémon</span>
           </button>
         </form>
 
         <div
-          class="mx-auto -mt-[194px] h-[211px] w-[360px] overflow-hidden min-[640px]:-mt-[164px] min-[640px]:h-[317px] min-[640px]:w-[540px] min-[820px]:-mt-[136px] min-[820px]:h-[423px] min-[820px]:w-[720px] min-[1000px]:-mt-[104px] min-[1000px]:h-[528px] min-[1000px]:w-[900px] min-[1200px]:-mt-19 min-[1200px]:h-[634px] min-[1200px]:w-[1080px]"
+          class="mx-auto -mt-[86px]
+            h-[211px] w-[360px]
+            overflow-hidden
+            min-[640px]:-mt-[84px]
+            min-[640px]:h-[317px]
+            min-[640px]:w-[540px]
+            min-[820px]:-mt-[80px]
+            min-[820px]:h-[423px]
+            min-[820px]:w-[720px]
+            min-[1000px]:-mt-[76px]
+            min-[1000px]:h-[528px]
+            min-[1000px]:w-[900px]
+            min-[1200px]:-mt-18
+            min-[1200px]:h-[634px]
+            min-[1200px]:w-[1080px]"
         >
           <div
             id="pokedex-list"
-            class="grid h-full grid-cols-2 content-start justify-items-center gap-4 overflow-y-auto overscroll-contain p-4 min-[640px]:grid-cols-3 min-[820px]:grid-cols-4 min-[1000px]:grid-cols-5 min-[1200px]:grid-cols-6"
+            class="grid h-full
+              grid-cols-2 content-start
+              justify-items-center gap-4
+              overflow-y-auto
+              overscroll-contain p-4
+              min-[640px]:grid-cols-3
+              min-[820px]:grid-cols-4
+              min-[1000px]:grid-cols-5
+              min-[1200px]:grid-cols-6"
           ></div>
         </div>
 
@@ -109,12 +256,17 @@
     <footer class="mt-auto">
       <div
         id="pokeball2"
-        class="flex h-auto flex-col items-center justify-between gap-4 rounded-t-3xl border-2 bg-white px-4 py-4 min-[600px]:flex-row"
+        class="flex h-auto flex-col
+          items-center justify-between
+          gap-4 rounded-t-3xl border-2
+          bg-white px-4 py-4
+          min-[600px]:flex-row"
       >
         <p class="min-[600px]:ml-6">© Poke Impressum</p>
 
         <nav aria-label="Footer navigation" class="min-[600px]:mr-6">
-          <a href="index.html" class="transition hover:text-[#f44f41]">
+          <a href="index.html" class="transition
+            hover:text-[#f44f41]">
             Home
           </a>
 
@@ -123,7 +275,8 @@
           <a
             href="pokedex.html"
             aria-current="page"
-            class="font-bold text-[#f44f41]"
+            class="font-bold
+              text-[#f44f41]"
           >
             Pokedex
           </a>
