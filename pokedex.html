@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <script src="./pokedex.js" type="module"></script>
+
+    <title>Pokédex</title>
+  </head>
+
+  <body class="flex min-h-screen flex-col bg-slate-950 text-slate-900">
+    <header class="relative z-20">
+      <div
+        id="pokeball1"
+        class="relative mx-auto rounded-b-3xl border-2 border-black bg-[#f44f41] px-6 pb-16 pt-8 shadow-lg"
+      >
+        <div
+          class="mx-auto flex max-w-6xl flex-col items-center gap-5 text-center"
+        >
+          <h1 class="text-4xl font-black tracking-tight text-white sm:text-5xl">
+            My Pokédex
+          </h1>
+
+          <nav
+            aria-label="Main navigation"
+            class="flex items-center gap-2 rounded-full border-2 border-[#2A2A2A] bg-[#ed665a] px-5 py-2 text-lg font-bold"
+          >
+            <a
+              href="index.html"
+              class="rounded-full px-3 py-1 transition hover:bg-[#2A2A2A] hover:text-white"
+            >
+              Homepage
+            </a>
+
+            <span aria-hidden="true">|</span>
+
+            <a
+              href="pokedex.html"
+              aria-current="page"
+              class="rounded-full bg-[#2A2A2A] px-3 py-1 text-white"
+            >
+              Pokédex
+            </a>
+          </nav>
+        </div>
+
+        <div
+          class="absolute -bottom-12 left-1/2 flex h-24 w-24 -translate-x-1/2 items-center justify-center rounded-full border-2 border-[#2A2A2A] bg-[#f0f0f0]"
+          aria-hidden="true"
+        >
+          <div
+            class="h-10 w-10 rounded-full border-2 border-[#2A2A2A] bg-white"
+          ></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 bg-slate-950">
+      <section
+        id="pokebox"
+        class="mt-[4rem] mx-auto aspect-[4/3] w-[400px] bg-contain bg-top bg-no-repeat px-2 pt-20 pb-24 min-[640px]:w-[600px] min-[640px]:px-12 min-[820px]:w-[800px] min-[1000px]:w-[1000px] min-[1200px]:w-[1200px]"
+        style="background-image: url(&quot;./pics/Pokebox_leer.png&quot;)"
+      >
+        <form
+          id="pokedex-search-form"
+          class="-mt-4 mx-auto mb-20 flex w-[360px] items-center gap-3 rounded-xl border-2 border-transparent px-3 py-2 min-[640px]:w-[540px] min-[820px]:w-[720px] min-[1000px]:w-[900px] min-[1200px]:w-[1080px]"
+        >
+          <input
+            id="pokedex-search"
+            type="search"
+            name="pokemon-search"
+            placeholder="Search Pokémon by name or ID"
+            class="h-23 min-w-0 flex-1 rounded-xl border border-[#8f8776] bg-transparent px-3 text-lg outline-none placeholder:text-slate-600 focus:border-[#8f8776] min-[640px]:px-4 min-[640px]:text-xl min-[820px]:text-2xl min-[1000px]:text-3xl"
+          />
+
+          <button
+            type="submit"
+            class="h-23 w-20 shrink-0 rounded-xl border border-[#8f8776] bg-transparent text-lg font-bold transition hover:border-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white min-[640px]:w-24 min-[640px]:text-xl min-[820px]:w-auto min-[820px]:px-6 min-[820px]:text-2xl min-[1000px]:text-3xl"
+          >
+            <span aria-hidden="true" class="text-3xl min-[820px]:hidden"
+              >⌕</span
+            >
+            <span class="hidden min-[820px]:inline">Search</span>
+            <span class="sr-only">Search Pokémon</span>
+          </button>
+        </form>
+
+        <div
+          class="mx-auto -mt-[194px] h-[211px] w-[360px] overflow-hidden min-[640px]:-mt-[164px] min-[640px]:h-[317px] min-[640px]:w-[540px] min-[820px]:-mt-[136px] min-[820px]:h-[423px] min-[820px]:w-[720px] min-[1000px]:-mt-[104px] min-[1000px]:h-[528px] min-[1000px]:w-[900px] min-[1200px]:-mt-19 min-[1200px]:h-[634px] min-[1200px]:w-[1080px]"
+        >
+          <div
+            id="pokedex-list"
+            class="grid h-full grid-cols-2 content-start justify-items-center gap-4 overflow-y-auto overscroll-contain p-4 min-[640px]:grid-cols-3 min-[820px]:grid-cols-4 min-[1000px]:grid-cols-5 min-[1200px]:grid-cols-6"
+          ></div>
+        </div>
+
+        <section
+          id="pokemon-details"
+          class="sr-only"
+          aria-live="polite"
+        ></section>
+      </section>
+    </main>
+
+    <footer class="mt-auto">
+      <div
+        id="pokeball2"
+        class="flex h-auto flex-col items-center justify-between gap-4 rounded-t-3xl border-2 bg-white px-4 py-4 min-[600px]:flex-row"
+      >
+        <p class="min-[600px]:ml-6">© Poke Impressum</p>
+
+        <nav aria-label="Footer navigation" class="min-[600px]:mr-6">
+          <a href="index.html" class="transition hover:text-[#f44f41]">
+            Home
+          </a>
+
+          |
+
+          <a
+            href="pokedex.html"
+            aria-current="page"
+            class="font-bold text-[#f44f41]"
+          >
+            Pokedex
+          </a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

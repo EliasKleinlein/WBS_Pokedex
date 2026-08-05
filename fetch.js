@@ -1,4 +1,5 @@
 import createCard from "./pokeCard.js";
+import { markPokemonSeen, savePokemon } from "./save.js";
 
 const input = document.querySelector("form");
 const btn = document.querySelector("#saveBtn");
@@ -55,62 +56,71 @@ function anzeigeUndTimeout() {
   }, 2000);
 }
 
-input.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const formData = new FormData(event.target);
-  const pokeName = formData.get("q")?.toLocaleLowerCase();
-  mainPokemon.textContent = "";
-  deleteCard();
+input
+  .addEventListener("submit", (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const pokeName = formData.get("q")?.toLocaleLowerCase();
+    mainPokemon.textContent = "";
+    deleteCard();
 
-  // 1/2 Fetch - alles außer Flavor Text
-  fetch(`${url}/${pokeName}`)
-    .then((res) => {
-      if (!res.ok) throw new Error(`${pokeName} wasn't found`);
-      return res.json();
-    })
-    .then((data) => {
-      console.log(data);
+    // 1/2 Fetch - alles außer Flavor Text
+    fetch(`${url}/${pokeName}`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`${pokeName} wasn't found`);
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
 
-      // object logic
-      pokeObject.id = data.id;
-      pokeObject.pokeName =
-        data.species.name.charAt(0).toUpperCase() + data.species.name.slice(1);
-      pokeObject.pokeType = data.types.map(
-        (el) => el.type.name.charAt(0).toUpperCase() + el.type.name.slice(1),
-      );
-      pokeObject.pokeImg = data.sprites.front_default;
-      pokeObject.pokeStats.HP = data.stats[0].base_stat;
-      pokeObject.pokeStats.Attack = data.stats[1].base_stat;
-      pokeObject.pokeStats.Defense = data.stats[2].base_stat;
-      pokeObject.pokeStats.Speed = data.stats[5].base_stat;
-      pokeObject.cry = data.cries.legacy;
-      console.log(pokeObject);
-    })
-    .then(() => {
-      // 2/2 Fetch - Flavor Text
-      return fetch(`${urlFlavor}/${pokeObject.id}`)
-        .then((res) => {
-          if (!res.ok) throw new Error(`${pokeName} wasn't found`);
-          return res.json();
-        })
-        .then((data) => {
-          console.log(data);
-          let flavorTextObj = data.flavor_text_entries.find(
-            (entry) => entry.language.name === "en",
-          );
-          pokeObject.flavorText = flavorTextObj
-            ? flavorTextObj.flavor_text.replace(/[\n\f]/g, " ")
-            : "No entry.";
-          console.log(pokeObject.flavorText);
-        })
-        .then(() => {
-          anzeigeUndTimeout();
-        });
-    })
-    .catch((error) => {
-      console.error("Oh oh. ", error);
-      mainPokemon.textContent = "No Pokemon found";
-    });
+        // object logic
+        pokeObject.id = data.id;
+        pokeObject.pokeName =
+          data.species.name.charAt(0).toUpperCase() +
+          data.species.name.slice(1);
+        pokeObject.pokeType = data.types.map(
+          (el) => el.type.name.charAt(0).toUpperCase() + el.type.name.slice(1),
+        );
+        pokeObject.pokeImg = data.sprites.front_default;
+        pokeObject.pokeStats.HP = data.stats[0].base_stat;
+        pokeObject.pokeStats.Attack = data.stats[1].base_stat;
+        pokeObject.pokeStats.Defense = data.stats[2].base_stat;
+        pokeObject.pokeStats.Speed = data.stats[5].base_stat;
+        pokeObject.cry = data.cries.legacy;
+        console.log(pokeObject);
+      })
+      .then(() => {
+        // 2/2 Fetch - Flavor Text
+        return fetch(`${urlFlavor}/${pokeObject.id}`)
+          .then((res) => {
+            if (!res.ok) throw new Error(`${pokeName} wasn't found`);
+            return res.json();
+          })
+          .then((data) => {
+            console.log(data);
+            let flavorTextObj = data.flavor_text_entries.find(
+              (entry) => entry.language.name === "en",
+            );
+            pokeObject.flavorText = flavorTextObj
+              ? flavorTextObj.flavor_text.replace(/[\n\f]/g, " ")
+              : "No entry.";
+            console.log(pokeObject.flavorText);
+          })
+          .then(() => {
+            markPokemonSeen(pokeObject);
+            anzeigeUndTimeout();
+          });
+      });
+  })
+  .catch((error) => {
+    console.error("Oh oh. ", error);
+    mainPokemon.textContent = "No Pokemon found";
+  });
+
+btn.addEventListener("click", () => {
+  const result = savePokemon(pokeObject);
+
+  mainPokemon.textContent = result.message;
 });
 
 function deleteCard() {
