@@ -71,7 +71,8 @@ input
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        
+        if (data.id > 151) throw new Error(`${pokeName} not found. Pls enter one of the 151 original Pokèmon names or IDBCursor.`)
 
         // object logic
         pokeObject.id = data.id;
