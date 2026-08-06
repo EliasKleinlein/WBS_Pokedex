@@ -11,7 +11,7 @@ const typeColor = {
   Poison: "#A040A0",
   Ground: "#E0C068",
   Flying: "#A890F0",
-  Psychic: "#F85888",
+  Psychic: "#a7169d",
   Bug: "#A8B820",
   Rock: "#B8A038",
   Ghost: "#705898",
@@ -27,7 +27,8 @@ function createCard(pokeObject) {
   Card.id = "pokecard";
   Card.className = `w-[90%] max-w-sm sm:max-w-md lg:max-w-xl xl:max-w-2xl mx-auto my-10 bg-white rounded-3xl shadow-2xl overflow-hidden ring-4 ring-[${color}] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_${color}]`;
   const header = document.createElement("div");
-  header.className = `relative bg-[${color}] pt-6 pb-14 px-6 lg:pt-8 lg:pb-20 lg:px-8 flex items-center justify-between`;
+
+  header.className = `relative pt-6 bg-[${color}] bg-[url("/pics/Pk_BGs/${pokeObject.pokeType[0]}.png")] bg-blend-overlay pb-14 px-6 lg:pt-8 lg:pb-20 lg:px-8 flex items-center justify-between`;
 
   const nameWrap = document.createElement("div");
   nameWrap.className = `flex flex-col text-white drop-shadow-md`;
