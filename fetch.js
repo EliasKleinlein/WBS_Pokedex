@@ -96,11 +96,7 @@ input.addEventListener("submit", (event) => {
       return res.json();
     })
     .then((data) => {
-      if (data.id > 151)
-        throw new Error(
-          `${pokeName} not found. Pls enter one of the 151 original Pokèmon names or IDBCursor.`,
-        );
-
+      console.log(data);
       // object logic
       pokeObject.id = data.id;
       pokeObject.pokeName =
@@ -113,7 +109,10 @@ input.addEventListener("submit", (event) => {
       pokeObject.pokeStats.Attack = data.stats[1].base_stat;
       pokeObject.pokeStats.Defense = data.stats[2].base_stat;
       pokeObject.pokeStats.Speed = data.stats[5].base_stat;
-      pokeObject.cry = data.cries.legacy;
+      // noch "or" ändern
+      pokeObject.cry = data.cries.legacy
+        ? data.cries.legacy
+        : data.cries.latest;
       console.log(pokeObject);
     })
     .then(() => {
