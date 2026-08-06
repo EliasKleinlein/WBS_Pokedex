@@ -110,12 +110,14 @@ input
             markPokemonSeen(pokeObject);
             anzeigeUndTimeout();
           });
-      });
-  })
-  .catch((error) => {
-    console.error("Oh oh. ", error);
-    mainPokemon.textContent = "No Pokemon found";
-  });
+      }) //catch fix
+    .catch((error) => {
+      console.error("Oh oh. ", error);
+      mainPokemon.textContent = "No Pokemon found";
+    });
+});
+  
+
 
 btn.addEventListener("click", () => {
   const result = savePokemon(pokeObject);
