@@ -1,5 +1,5 @@
 import createCard from "./pokeCard.js";
-import { markPokemonSeen, savePokemon } from "./save.js";
+import { markPokemonSeen } from "./save.js";
 
 const input = document.querySelector("form");
 const btn = document.querySelector("#saveBtn");
@@ -7,14 +7,13 @@ const mainPokemon = document.querySelector("#main-pokemon");
 const main = document.querySelector("#main");
 const url = "https://pokeapi.co/api/v2/pokemon";
 const urlFlavor = "https://pokeapi.co/api/v2/pokemon-species/";
-const notFoundSound = new Audio("/sounds/pokeDeny.mp3");
 const basePikachu = "/pics/pikaSilhouette.png";
 
 //pokeObject
-const pokeObjectBase = {
+export const pokeObjectBase = {
   id: "???",
   pokeName: "???",
-  pokeType: ["???"],
+  pokeType: ["Unidentified"],
   pokeImg: basePikachu,
   pokeStats: {
     HP: "???",
@@ -43,7 +42,7 @@ const pokeObjectNotFound = {
   pokeNote: "Write a personal Note ✏️",
 };
 
-const pokeObject = structuredClone(pokeObjectBase);
+export const pokeObject = structuredClone(pokeObjectBase);
 
 // btn logic
 // Anzeige von Pokemon und blinkender Button mit Delay bis Anzeige
@@ -58,6 +57,18 @@ function anzeigeUndTimeout(bool) {
     "animate-pulse",
   );
   btn.classList.remove("bg-white");
+  let pokeCard = document.getElementById("pokecard");
+  pokeCard.classList.add(
+    "animate-pulse",
+    "brightness-75",
+    "transition-all",
+    "opacity-20",
+    "ease",
+  );
+  pokeCard.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+  });
   setTimeout(() => {
     btn.classList.remove(
       "bg-red-400",
@@ -67,6 +78,7 @@ function anzeigeUndTimeout(bool) {
     );
     btn.classList.add("bg-white");
     btn.disabled = false;
+    deleteCard();
 
     if (bool) {
       createCard(pokeObject);
@@ -79,15 +91,14 @@ function anzeigeUndTimeout(bool) {
       notFoundSound.play();
     }
     input.reset();
-  }, 2000);
+  }, 3000);
 }
 
-input.addEventListener("submit", (event) => {
+function fetching(event) {
   event.preventDefault();
   const formData = new FormData(event.target);
   const pokeName = formData.get("q")?.toLocaleLowerCase();
   mainPokemon.textContent = "";
-  deleteCard();
 
   // 1/2 Fetch - alles außer Flavor Text
   fetch(`${url}/${pokeName}`)
@@ -141,13 +152,7 @@ input.addEventListener("submit", (event) => {
       anzeigeUndTimeout(false);
       console.error("Oh oh. ", error);
     });
-});
-
-btn.addEventListener("click", () => {
-  const result = savePokemon(pokeObject);
-
-  mainPokemon.textContent = result.message;
-});
+}
 
 function deleteCard() {
   let pokeCard = document.getElementById("pokecard");
@@ -155,3 +160,5 @@ function deleteCard() {
     main.removeChild(pokeCard);
   }
 }
+
+export default fetching;
