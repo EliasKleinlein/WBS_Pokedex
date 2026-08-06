@@ -19,6 +19,7 @@ const typeColor = {
   Dark: "#705848",
   Steel: "#B8B8D0",
   Fairy: "#EE99AC",
+  Unidentified: "#A8A878",
 };
 function createCard(pokeObject) {
   const color = typeColor[pokeObject.pokeType[0]];
@@ -31,7 +32,7 @@ function createCard(pokeObject) {
   header.className = `relative pt-6 bg-[${color}] bg-[url("/pics/Pk_BGs/${pokeObject.pokeType[0]}.png")] bg-blend-overlay pb-14 px-6 lg:pt-8 lg:pb-20 lg:px-8 flex items-center justify-between`;
 
   const nameWrap = document.createElement("div");
-  nameWrap.className = `flex flex-col text-white drop-shadow-md`;
+  nameWrap.className = `flex flex-col text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]`;
 
   const pokeImg = document.createElement("img");
   pokeImg.src = pokeObject.pokeImg;
