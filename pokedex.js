@@ -39,3 +39,27 @@ searchInput.addEventListener("search", () => {
     pokemonSlot.classList.remove("hidden");
   });
 });
+
+// Blink Button (lol)
+const blinkBtn = document.querySelector("#blinkBtn");
+blinkBtn.addEventListener("click", () => {
+  const colors = [
+    { bg: "bg-red-300", shadow: "shadow-[0_0_15px_10px_#f87171]" },
+    { bg: "bg-blue-300", shadow: "shadow-[0_0_15px_10px_#60a5fa]" },
+    { bg: "bg-green-300", shadow: "shadow-[0_0_15px_10px_#34d399]" },
+    { bg: "bg-yellow-300", shadow: "shadow-[0_0_15px_10px_#fbbf24]" },
+    { bg: "bg-purple-300", shadow: "shadow-[0_0_15px_10px_#c084fc]" },
+    { bg: "bg-pink-300", shadow: "shadow-[0_0_15px_10px_#f472b6]" },
+  ];
+
+  const rngColor = colors[Math.floor(Math.random() * colors.length)];
+
+  blinkBtn.classList.add("transition-all", "duration-500");
+
+  blinkBtn.classList.remove("bg-white");
+  blinkBtn.classList.add(rngColor.bg, rngColor.shadow, "scale-95");
+  setTimeout(() => {
+    blinkBtn.classList.remove(rngColor.bg, rngColor.shadow, "scale-95");
+    blinkBtn.classList.add("bg-white");
+  }, 300);
+});

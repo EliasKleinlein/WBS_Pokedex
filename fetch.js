@@ -37,7 +37,7 @@ const pokeObjectNotFound = {
     Defense: "???",
     Speed: "???",
   },
-  cry: "/sounds/pokeDeny.mp3",
+  cry: "./sounds/pokeDeny.mp3",
   flavorText: "???",
   pokeNote: "Write a personal Note ✏️",
 };
@@ -87,6 +87,7 @@ function anzeigeUndTimeout(bool) {
       pokeCry.volume = 0.3;
     } else {
       createCard(pokeObjectNotFound);
+      // const notFoundSound = new Audio("./sounds/pokeDeny.mp3");
       const notFoundSound = new Audio(pokeObjectNotFound.cry);
       notFoundSound.play();
     }
