@@ -88,10 +88,11 @@
     <main class="flex-1 bg-slate-950">
       <section
         id="pokebox"
-        class="mx-auto aspect-[4/3]
-          bg-contain bg-top bg-no-repeat
-          mt-[4rem] w-[400px] px-2 pt-20
-          pb-24 min-[640px]:mt-[4rem]
+        class="relative mx-auto
+          aspect-[4/3] bg-contain bg-top
+          bg-no-repeat mt-[4rem]
+          w-[400px] px-2 pt-20 pb-24
+          min-[640px]:mt-[4rem]
           min-[640px]:w-[600px]
           min-[640px]:px-12
           min-[640px]:pt-20
@@ -247,7 +248,10 @@
 
         <section
           id="pokemon-details"
-          class="sr-only"
+          class="absolute inset-0 z-30
+            hidden items-center
+            justify-center bg-black/50
+            p-6"
           aria-live="polite"
         ></section>
       </section>
