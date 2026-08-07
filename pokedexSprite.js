@@ -161,10 +161,15 @@ function renderPokemonDetails(pokemon) {
     return;
   }
 
+  detailsContainer.classList.remove("hidden");
+  detailsContainer.classList.add("flex");
+
   const card = document.createElement("article");
 
   card.className =
-    "grid gap-6 rounded-3xl border-4 border-slate-300 bg-white/95 p-5 shadow-2xl md:grid-cols-[15rem_1fr]";
+    "grid w-full gap-8 rounded-3xl border-4 border-slate-300 bg-white/95 p-8 shadow-2xl md:grid-cols-[18rem_1fr]";
+
+  card.style.backgroundImage = `url("/pics/Pk_BGs/${pokemon.pokeType[0]}.png")`;
 
   const image = document.createElement("img");
 
@@ -173,7 +178,7 @@ function renderPokemonDetails(pokemon) {
   image.alt = `${pokemon.pokeName} sprite`;
 
   image.className =
-    "mx-auto h-56 w-56 rounded-3xl bg-slate-100 object-contain drop-shadow-xl";
+    "mx-auto h-72 w-72 rounded-3xl bg-slate-100 object-contain drop-shadow-xl";
 
   const content = document.createElement("div");
 
@@ -275,15 +280,8 @@ function clearPokemonDetails() {
     return;
   }
 
-  const message = document.createElement("p");
-
-  message.className =
-    "rounded-2xl border-2 border-dashed border-slate-400 bg-white/90 p-6 text-center font-bold text-slate-600";
-
-  message.textContent =
-    "Select a caught Pokémon to view its stats and personal note.";
-
-  detailsContainer.replaceChildren(message);
+  detailsContainer.classList.add("hidden");
+  detailsContainer.classList.remove("flex");
 }
 
 async function renderAllPokemon() {
