@@ -15,10 +15,12 @@ const typeColor = {
   Bug: "#A8B820",
   Rock: "#B8A038",
   Ghost: "#705898",
-  Dragon: "#7038F8",
+  Dragon: "#0e9585",
   Dark: "#705848",
   Steel: "#B8B8D0",
   Fairy: "#EE99AC",
+  Unidentified: "#A8A878",
+  Type: "#A8A878",
 };
 function createCard(pokeObject) {
   const color = typeColor[pokeObject.pokeType[0]];
@@ -31,9 +33,10 @@ function createCard(pokeObject) {
   header.className = `relative pt-6 bg-[${color}] bg-[url("/pics/Pk_BGs/${pokeObject.pokeType[0]}.png")] bg-blend-overlay pb-14 px-6 lg:pt-8 lg:pb-20 lg:px-8 flex items-center justify-between`;
 
   const nameWrap = document.createElement("div");
-  nameWrap.className = `flex flex-col text-white drop-shadow-md`;
+  nameWrap.className = `flex flex-col text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]`;
 
   const pokeImg = document.createElement("img");
+  pokeImg.id = "pokecard-img";
   pokeImg.src = pokeObject.pokeImg;
   pokeImg.className = `absolute -bottom-12 lg:-bottom-16 right-6 w-28 h-28 lg:w-40 lg:h-40 object-contain drop-shadow-xl bg-white rounded-full border-4 border-white`;
 
@@ -43,7 +46,7 @@ function createCard(pokeObject) {
 
   const pokeId = document.createElement("h3");
   pokeId.textContent = `ID: ${pokeObject.id}`;
-  pokeId.className = `text-sm font-semibold text-white/80`;
+  pokeId.className = `text-sm font-semibold text-white/80 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]`;
 
   const pokeType = document.createElement("p");
   pokeType.textContent = pokeObject.pokeType.join("/");
@@ -67,6 +70,64 @@ function createCard(pokeObject) {
   Speed.textContent = `Speed: ${pokeObject.pokeStats.Speed}`;
   Speed.className = `flex justify-between border-b border-gray-200 pb-1`;
 
+  // Extra Bereich zum ein-/ausklappen (Flavor Text und Note)
+  const textSection = document.createElement("div");
+  textSection.className = `hidden px-6 lg:px-8 pb-6 border-t border-gray-100 pt-4 flex flex-col gap-4 bg-white`;
+
+  // Flavor Text - Header
+  const flavorTextHeader = document.createElement("h4");
+  flavorTextHeader.textContent = "Pokémon Info";
+  flavorTextHeader.className = `text-xs font-bold uppercase tracking-wider text-black`;
+
+  // Flavor Text
+  const flavorText = document.createElement("p");
+  flavorText.textContent = pokeObject.flavorText;
+  flavorText.className = `text-sm italic text-gray-600 leading-relaxed`;
+
+  // Note
+  const noteContainer = document.createElement("div");
+  noteContainer.className = `flex flex-col gap-1`;
+
+  const noteHeader = document.createElement("h4");
+  noteHeader.textContent = "Personal Note";
+  noteHeader.className = `text-xs font-bold uppercase tracking-wider text-black`;
+
+  const noteContent = document.createElement("p");
+  noteContent.textContent = pokeObject.pokeNote;
+  noteContent.className = `text-sm text-black bg-white p-3`;
+
+  // Zusammenbau des einklappbaren Bereichs
+  noteContainer.appendChild(noteHeader);
+  noteContainer.appendChild(noteContent);
+  textSection.appendChild(flavorTextHeader);
+  textSection.appendChild(flavorText);
+  textSection.appendChild(noteContainer);
+
+  // Toggle Button
+  const toggleBtn = document.createElement("button");
+  toggleBtn.className = `w-full py-3 bg-gray-50 hover:bg-gray-100 text-sm font-bold text-gray-500 hover:text-gray-700 transition-colors flex items-center justify-center gap-2 border-t border-gray-100 cursor-pointer`;
+
+  // Button Inhalt
+  toggleBtn.textContent = "More Details";
+
+  // Ein-/Ausklappen
+  toggleBtn.addEventListener("click", () => {
+    const isHidden = textSection.classList.contains("hidden");
+
+    if (isHidden) {
+      textSection.classList.remove("hidden");
+      toggleBtn.textContent = "Less Details";
+    } else {
+      textSection.classList.add("hidden");
+      toggleBtn.textContent = "More Details";
+    }
+
+    toggleBtn.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+    });
+  });
+
   //appending
   nameWrap.appendChild(pokeName);
   nameWrap.appendChild(pokeId);
@@ -82,6 +143,10 @@ function createCard(pokeObject) {
   Card.appendChild(header);
   Card.appendChild(listStats);
   main.appendChild(Card);
+
+  // Ausklapp Section
+  Card.appendChild(textSection);
+  Card.appendChild(toggleBtn);
 }
 
 export default createCard;
