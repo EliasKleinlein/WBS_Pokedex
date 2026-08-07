@@ -30,7 +30,8 @@ function createCard(pokeObject) {
   Card.className = `w-[90%] max-w-sm sm:max-w-md lg:max-w-xl xl:max-w-2xl mx-auto my-10 bg-white rounded-3xl shadow-2xl overflow-hidden ring-4 ring-[${color}] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_${color}]`;
   const header = document.createElement("div");
 
-  header.className = `relative pt-6 bg-[${color}] bg-[url("/pics/Pk_BGs/${pokeObject.pokeType[0]}.png")] bg-blend-overlay pb-14 px-6 lg:pt-8 lg:pb-20 lg:px-8 flex items-center justify-between`;
+  header.className = `relative pt-6 bg-[${color}] bg-blend-overlay pb-14 px-6 lg:pt-8 lg:pb-20 lg:px-8 flex items-center justify-between`;
+  header.style.backgroundImage = `url("./pics/Pk_BGs/${pokeObject.pokeType[0]}.png")`;
 
   const nameWrap = document.createElement("div");
   nameWrap.className = `flex flex-col text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]`;

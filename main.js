@@ -1,4 +1,4 @@
-import { markPokemonSeen, savePokemon } from "./save.js";
+import { savePokemon } from "./save.js";
 import createCard from "./pokeCard.js";
 import fetching, { pokeObject, pokeObjectBase } from "./fetch";
 
