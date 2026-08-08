@@ -7,7 +7,7 @@ const mainPokemon = document.querySelector("#main-pokemon");
 const main = document.querySelector("#main");
 const url = "https://pokeapi.co/api/v2/pokemon";
 const urlFlavor = "https://pokeapi.co/api/v2/pokemon-species/";
-const basePikachu = "/pics/pikaSilhouette.png";
+const basePikachu = "./pics/pikaSilhouette.png";
 
 //pokeObject
 export const pokeObjectBase = {
